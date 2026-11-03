@@ -1,33 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/homepage.css">
-    <title>David Skirton</title>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal profile and portfolio website.">
+  <title>Your Name | Personal Profile</title>
+  <style>
+    :root {
+      --bg: #171717;
+      --surface: #202020;
+      --surface-2: #292929;
+      --text: #eeeeeb;
+      --muted: #aaa9a4;
+      --accent: #d0d0cb;
+      --accent-2: #8d8d88;
+      --border: rgba(255,255,255,.13);
+      --shadow: none;
+    }
+    body.light {
+      --bg: #f1f0ec;
+      --surface: #e8e7e2;
+      --surface-2: #dddbd5;
+      --text: #20201e;
+      --muted: #66655f;
+      --accent: #333330;
+      --accent-2: #77766f;
+      --border: rgba(20,20,18,.16);
+      --shadow: none;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6; transition: background .25s, color .25s;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 800; letter-spacing: -.04em; font-size: 1.15rem; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .94rem; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .icon-btn, .menu-btn {
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      width: 42px; height: 42px; border-radius: 13px; cursor: pointer;
+    }
+    .menu-btn { display: none; }
+    .hero { padding: 92px 0 76px; display: grid; grid-template-columns: 1.35fr .65fr; gap: 55px; align-items: center; }
+    .eyebrow { color: var(--accent-2); font-size: .82rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { font-size: clamp(2.7rem, 6vw, 5.3rem); line-height: 1.02; letter-spacing: -.065em; margin: 16px 0 22px; }
+    h1 span { color: var(--accent); }
+    .lead { max-width: 620px; color: var(--muted); font-size: 1.12rem; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 19px; border-radius: 13px; font-weight: 750; border: 1px solid var(--border); transition: transform .2s, opacity .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.primary { background: var(--accent); color: white; border-color: transparent; }
+    .btn.secondary { background: var(--surface); }
+    .portrait-wrap { position: relative; justify-self: center; width: min(290px, 80%); }
+    .portrait {
+      aspect-ratio: 1; border-radius: 34% 66% 56% 44% / 42% 40% 60% 58%;
+      background: linear-gradient(145deg, #444444, #bdbdbd);
+      display: grid; place-items: center; box-shadow: var(--shadow); overflow: hidden;
+      border: 8px solid var(--surface);
+    }
+    .portrait span { font-size: 6.5rem; font-weight: 900; color: rgba(255,255,255,.9); letter-spacing: -.08em; }
+    .availability { position: absolute; bottom: 10px; left: -28px; background: var(--surface); border: 1px solid var(--border); padding: 10px 14px; border-radius: 14px; box-shadow: var(--shadow); font-size: .85rem; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); margin-right: 7px; }
+    section { padding: 65px 0; }
+    .section-heading { margin-bottom: 28px; }
+    .section-heading h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); letter-spacing: -.05em; margin: 7px 0; }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .panel, .skill, .project, .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 25px; box-shadow: var(--shadow); }
+    .panel p { color: var(--muted); margin-top: 0; }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fact { background: var(--surface-2); border-radius: 15px; padding: 15px; }
+    .fact strong { display: block; font-size: 1.25rem; }
+    .fact span { color: var(--muted); font-size: .88rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .skill { padding: 18px; box-shadow: none; }
+    .skill b { display: block; margin-bottom: 5px; }
+    .skill span { color: var(--muted); font-size: .88rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project { padding: 0; overflow: hidden; box-shadow: none; }
+    .project-art { min-height: 155px; display: grid; place-items: center; font-size: 2.7rem; background: linear-gradient(135deg, var(--surface-2), color-mix(in srgb, var(--accent) 35%, var(--surface))); }
+    .project-body { padding: 20px; }
+    .project-body p { color: var(--muted); font-size: .94rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+    .tag { background: var(--surface-2); color: var(--muted); border-radius: 99px; padding: 5px 10px; font-size: .75rem; }
+    .contact-card { display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+    .contact-card p { color: var(--muted); margin-bottom: 0; }
+    footer { padding: 28px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .socials { display: flex; gap: 17px; }
+    .socials a:hover { color: var(--accent); }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 65px; gap: 45px; }
+      .lead { margin-inline: auto; }
+      .hero-buttons { justify-content: center; }
+      .portrait-wrap { grid-row: 1; width: 210px; }
+      .availability { left: -18px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 30px, 1100px); }
+      .menu-btn { display: inline-grid; place-items: center; }
+      .nav-links {
+        display: none; position: absolute; top: 72px; left: 0; right: 0; padding: 20px;
+        background: var(--surface); border-bottom: 1px solid var(--border); flex-direction: column; align-items: stretch;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 8px 5px; }
+      .about-grid, .projects-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .contact-card { align-items: flex-start; flex-direction: column; }
+      section { padding: 48px 0; }
+    }
 
+
+    .experience-list, .qualification-list { border-top: 1px solid var(--border); }
+    .experience-item, .qualification-item {
+      display: grid; grid-template-columns: 190px 1fr; gap: 28px;
+      padding: 23px 0; border-bottom: 1px solid var(--border);
+    }
+    .experience-item h3, .qualification-item h3 { margin: 0 0 4px; font-size: 1.05rem; font-weight: 600; }
+    .experience-item p, .qualification-item p { color: var(--muted); margin: 7px 0 0; }
+    .experience-date, .qualification-year, .experience-place { color: var(--muted); font-size: .88rem; }
+    .experience-place { margin-top: 0 !important; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    @media (max-width: 620px) {
+      .experience-item, .qualification-item { grid-template-columns: 1fr; gap: 7px; }
+      .contact-links { width: 100%; }
+    }
+
+
+    .site-note { max-width: 620px; text-align: right; font-size: .78rem; color: var(--muted); }
+    @media (max-width: 620px) { .site-note { text-align: left; } }
+    .theme-icon { display: grid; place-items: center; }
+    .mono-symbol {
+      display: block; width: 19px; height: 19px; border-radius: 50%;
+      border: 1px solid currentColor;
+      background: linear-gradient(90deg, #111 0 50%, #fff 50% 100%);
+      box-shadow: inset 0 0 0 1px rgba(127,127,127,.25);
+      transition: transform .2s ease;
+    }
+    .theme-icon.is-light .mono-symbol { transform: rotate(180deg); }
+
+    /* More restrained, editorial styling */
+    body { font-family: Arial, Helvetica, sans-serif; letter-spacing: -.01em; }
+    .container { width: min(1040px, calc(100% - 48px)); }
+    .nav { min-height: 66px; }
+    .brand { font-size: .98rem; letter-spacing: .02em; }
+    .nav-links { gap: 28px; font-size: .88rem; }
+    .hero { padding: 112px 0 96px; grid-template-columns: 1.4fr .6fr; gap: 70px; }
+    .eyebrow { color: var(--muted); font-size: .72rem; letter-spacing: .16em; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 600; letter-spacing: -.075em; }
+    h1 span { color: var(--muted); }
+    .lead { font-size: 1.04rem; max-width: 560px; line-height: 1.8; }
+    .btn { border-radius: 3px; padding: 11px 16px; font-size: .88rem; font-weight: 600; }
+    .btn.primary { background: var(--text); color: var(--bg); }
+    .btn.secondary { background: transparent; }
+    .portrait-wrap { width: min(250px, 78%); }
+    .portrait { border-radius: 2px; background: #777; border: 0; box-shadow: none; }
+    .portrait span { font-size: 5.2rem; font-weight: 500; color: #f1f0ec; }
+    .availability { left: -20px; bottom: -16px; border-radius: 2px; box-shadow: none; font-size: .78rem; }
+    section { padding: 62px 0; }
+    .section-heading { margin-bottom: 25px; }
+    .section-heading h2 { font-size: clamp(1.8rem, 3.5vw, 2.35rem); font-weight: 600; letter-spacing: -.06em; }
+    .panel, .skill, .project, .contact-card { border-radius: 2px; box-shadow: none; }
+    .panel { padding: 26px 0; background: transparent; border: 0; border-top: 1px solid var(--border); }
+    .facts { padding: 0; }
+    .fact { border-radius: 2px; }
+    .skill { padding: 17px 0; border: 0; border-top: 1px solid var(--border); background: transparent; }
+    .projects-grid { gap: 24px; }
+    .project { border: 0; border-top: 1px solid var(--border); background: transparent; }
+    .project-art { min-height: 115px; background: var(--surface-2); font-size: 1.5rem; color: var(--muted); }
+    .project-body { padding: 16px 0 8px; }
+    .project-body h3 { font-size: 1.05rem; font-weight: 600; }
+    .tag { border-radius: 2px; background: var(--surface-2); }
+    .contact-card { padding: 28px 0; background: transparent; border: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .contact-card h2 { letter-spacing: -.05em; font-weight: 600; }
+    footer { margin-top: 30px; }
+    @media (max-width: 800px) {
+      .hero { padding: 76px 0 65px; }
+      .portrait-wrap { width: 190px; }
+    }
+    @media (max-width: 620px) {
+      .container { width: calc(100% - 32px); }
+      .hero { padding-top: 55px; gap: 42px; }
+      .availability { left: -10px; }
+    }
+
+  </style>
+</head>
 <body>
-    <h1>David's Website</h1>
-    <nav id="topBarLinks">
-        <a href="pages/projects.html">Projects</a>
-        <a href="pages/experience.html">Experience</a>
-        <a href="pages/qualifications.html">Qualifications</a>
-        <a href="pages/aboutme.html">About Me</a>
-        <a href="pages/contactme.html">Contact Me</a>
-    </nav>
-    
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore 
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-        deserunt mollit anim id est laborum.
-        
-        Curabitur pretium tincidunt lacus. Nulla gravida orci a odio, et facilisis nulla tincidunt eget. Maecenas 
-        ornare tortor sed nulla consequat, vitae malesuada magna bibendum. Donec fermentum, neque at pellentesque 
-        ultrices, sapien justo dignissim erat, nec tincidunt mauris augue vel ligula. Vestibulum ante ipsum primis 
-        in faucibus orci luctus et ultrices posuere cubilia curae; Integer euismod lacus luctus magna.
-    </p>
-    
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">YOUR<span>NAME</span>.</a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#qualifications">Qualifications</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-icon" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme"><span class="mono-symbol" aria-hidden="true"></span></button>
+        <button class="menu-btn" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <div class="container hero">
+      <div>
+        <div class="eyebrow">Hello, I'm</div>
+        <h1>Your Name.<br><span>A bit about me.</span></h1>
+        <p class="lead">I’m [your role / what you do]. This is a place to share a little about me, the things I’m working on and what I’m interested in.</p>
+        <div class="hero-buttons">
+          <a class="btn primary" href="#projects">Explore my work ↗</a>
+          <a class="btn secondary" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <div class="portrait" aria-label="Profile photo placeholder"><span>YN</span></div>
+        <div class="availability"><span class="dot"></span>Currently [your status]</div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">A little about me</div><h2>A short introduction.</h2><p>A few details about my background and interests.</p></div>
+        <div class="about-grid">
+          <div class="panel">
+            <p>I'm [Your Name], based in [Your Location]. I’m interested in [your interests or industry], and I love learning, solving problems and working with people who care about doing great work.</p>
+            <p>Outside of work, you’ll usually find me [your hobbies / interests]. I'm always keen to connect with new people and explore interesting ideas.</p>
+          </div>
+          <div class="panel facts">
+            <div class="fact"><strong>[Your field]</strong><span>Area of interest</span></div>
+            <div class="fact"><strong>[City, Country]</strong><span>Based in</span></div>
+            <div class="fact"><strong>[X]+</strong><span>Years learning / experience</span></div>
+            <div class="fact"><strong>Always</strong><span>Curious and learning</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">What I bring</div><h2>Skills & interests.</h2><p>Replace these examples with the skills you want to highlight.</p></div>
+        <div class="skills-grid">
+          <div class="skill"><b>Communication</b><span>Clear writing and collaboration</span></div>
+          <div class="skill"><b>Problem solving</b><span>Breaking challenges into steps</span></div>
+          <div class="skill"><b>Creativity</b><span>Fresh ideas and approaches</span></div>
+          <div class="skill"><b>Technology</b><span>Digital tools and development</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">What I’ve worked on</div><h2>Projects.</h2><p>A few projects and experiences worth sharing.</p></div>
+        <div class="projects-grid">
+          <article class="project"><div class="project-art">01</div><div class="project-body"><h3>Project One</h3><p>A short description of the project, what you contributed and the result.</p><div class="tags"><span class="tag">Research</span><span class="tag">Design</span></div></div></article>
+          <article class="project"><div class="project-art">02</div><div class="project-body"><h3>Project Two</h3><p>Explain a challenge you worked on and how your skills helped solve it.</p><div class="tags"><span class="tag">Development</span><span class="tag">Teamwork</span></div></div></article>
+          <article class="project"><div class="project-art">03</div><div class="project-body"><h3>Project Three</h3><p>Add another project, qualification, event or meaningful achievement.</p><div class="tags"><span class="tag">Planning</span><span class="tag">Creative</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">My background</div>
+          <h2>Experience.</h2>
+          <p>Work, volunteering and other experience.</p>
+        </div>
+        <div class="experience-list">
+          <article class="experience-item">
+            <div class="experience-date">[Month Year – Present]</div>
+            <div>
+              <h3>[Job title or role]</h3>
+              <p class="experience-place">[Organisation / Company] · [Location]</p>
+              <p>Briefly describe your responsibilities, what you contributed and anything you learned or achieved.</p>
+            </div>
+          </article>
+          <article class="experience-item">
+            <div class="experience-date">[Month Year – Month Year]</div>
+            <div>
+              <h3>[Previous role]</h3>
+              <p class="experience-place">[Organisation / Company] · [Location]</p>
+              <p>Add a short description of your work, responsibilities or relevant experience.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="qualifications">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Education & recognition</div>
+          <h2>Qualifications & achievements.</h2>
+          <p>Education, certifications, awards and milestones.</p>
+        </div>
+        <div class="qualification-list">
+          <article class="qualification-item">
+            <div class="qualification-year">[Year – Year]</div>
+            <div>
+              <h3>[Qualification / Achievement]</h3>
+              <p class="experience-place">[School, University or Awarding Organisation]</p>
+              <p>[Optional detail: subject, grade, award or a short explanation.]</p>
+            </div>
+          </article>
+          <article class="qualification-item">
+            <div class="qualification-year">[Year]</div>
+            <div>
+              <h3>[Certificate, award or achievement]</h3>
+              <p class="experience-place">[Organisation]</p>
+              <p>[Add a brief description if useful.]</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div>
+            <div class="eyebrow">Get in touch</div>
+            <h2>Let’s connect.</h2>
+            <p>If you’d like to get in touch, feel free to email me or find me on LinkedIn.</p>
+          </div>
+          <div class="contact-links">
+            <a class="btn primary" href="mailto:you@example.com">Email me ↗</a>
+            <a class="btn secondary" href="https://www.linkedin.com/in/your-profile/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Your Name.</span>
+      <span class="site-note">Note: This website was initially generated using ChatGPT (GPT-6) as a temporary version while I build and refine my own website and fix any bugs.</span>
+    </div>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggle.classList.toggle('is-light', document.body.classList.contains('light'));
+    });
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
