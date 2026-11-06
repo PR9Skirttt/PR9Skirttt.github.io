@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="David Skirton — Computer Science student at Royal Holloway, interested in cybersecurity, software development and engineering.">
+<title>David Skirton | Computer Science</title>
+<style>
+:root{--bg:#17191d;--surface:#1e232a;--surface2:#252d37;--text:#f2f4f7;--muted:#adb6c2;--accent:#79b8e8;--border:rgba(255,255,255,.15)}
+body.light{--bg:#f5f5f2;--surface:#e9ecef;--surface2:#dfe4e8;--text:#20201e;--muted:#62666b;--accent:#315f86;--border:rgba(20,20,18,.16)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Arial,Helvetica,sans-serif;transition:background .2s,color .2s}
+a{color:inherit;text-decoration:none}button{font:inherit}.container{width:min(1060px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:700;letter-spacing:.02em}.brand span{color:var(--muted)}
+.nav-links{display:flex;gap:22px;color:var(--muted);font-size:.88rem}.nav-links a:hover{color:var(--text)}
+.nav-actions{display:flex;gap:9px}.icon-btn,.menu-btn{width:40px;height:40px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;border-radius:3px}.menu-btn{display:none}
+.theme-icon{display:grid;place-items:center}.mono-symbol{width:18px;height:18px;border:1px solid currentColor;border-radius:50%;background:linear-gradient(90deg,#111 0 50%,#fff 50% 100%)}body.light .mono-symbol{transform:rotate(180deg)}
+.hero{padding:94px 0 82px;display:grid;grid-template-columns:1.35fr .65fr;gap:65px;align-items:center}.eyebrow{color:var(--muted);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+h1{font-size:clamp(2.8rem,6vw,5rem);line-height:1.02;letter-spacing:-.075em;font-weight:600;margin:16px 0 22px}h1 span{color:var(--muted)}
+.lead{color:var(--muted);font-size:1.06rem;max-width:630px;line-height:1.8}.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border:1px solid var(--border);border-radius:3px;font-size:.88rem;font-weight:600}.btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}.btn.secondary{background:transparent}
+.portrait-wrap{width:min(245px,85%);justify-self:center}.portrait{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;filter:none;border:4px solid var(--surface)}
+section{padding:76px 0;border-top:1px solid var(--border);scroll-margin-top:76px}
+section:nth-of-type(even){background:var(--surface)}
+.section-heading{margin-bottom:34px;padding-bottom:20px;border-bottom:1px solid var(--border);position:relative}
+.section-heading:after{content:"";display:block;width:54px;height:3px;background:var(--accent);position:absolute;bottom:-2px;left:0}
+.section-heading h2{font-size:clamp(2rem,4vw,2.7rem);letter-spacing:-.065em;font-weight:650;margin:7px 0 8px;line-height:1.1}
+.section-heading p{color:var(--muted);margin:0;max-width:720px}
+.eyebrow{color:var(--accent);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800}
+.about-copy{max-width:850px;color:var(--muted)}.about-copy p{margin:0 0 16px}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.project{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;box-shadow:0 5px 20px rgba(0,0,0,.08);transition:transform .2s,border-color .2s}
+.project:hover{transform:translateY(-3px);border-color:var(--muted)}
+.project-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.project-placeholder{width:100%;height:190px;display:grid;place-items:center;background:var(--surface2);color:var(--muted);font-size:2rem;letter-spacing:.1em}
+.project-gallery img{width:100%;height:190px;object-fit:cover;filter:none!important;background:var(--surface2);border-radius:5px;transition:transform .2s}
+.project-gallery img:hover{transform:scale(1.015)}
+.project-gallery img:focus{outline:2px solid var(--text)}
+.project{min-width:0}.project h3{margin-top:2px}.project p{font-size:.94rem;line-height:1.7}
+.project-meta{font-size:.72rem;color:var(--accent);font-weight:700;letter-spacing:.075em;text-transform:uppercase;margin:0 0 9px}
+@media(max-width:640px){section{padding:56px 0}.project-grid{grid-template-columns:1fr}.project-gallery img{height:210px}}.project h3,.entry h3{font-size:1.18rem;margin:0 0 8px;font-weight:700;line-height:1.3}.project p,.entry p{color:var(--muted);margin:5px 0}.project-meta{font-size:.8rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.entries{border-top:2px solid var(--border)}.entry{display:grid;grid-template-columns:190px 1fr;gap:25px;padding:24px 0;border-bottom:1px solid var(--border)}.entry-date{font-size:.88rem;color:var(--muted)}.entry-org{font-size:.9rem;color:var(--muted);margin-top:0!important}.entry ul{color:var(--muted);padding-left:18px;margin:8px 0 0}.entry li{margin:3px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px}.two-col>div>h3{font-size:1.12rem;padding-bottom:10px;border-bottom:1px solid var(--border);margin:0 0 8px}.small-entry{padding:17px 0;border-top:1px solid var(--border)}.small-entry h3{font-size:1rem;margin:0}.small-entry p{color:var(--muted);margin:4px 0;font-size:.92rem}
+.contact-card{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:30px;background:var(--surface2);border:1px solid var(--border);border-radius:8px}.contact-card p{color:var(--muted);margin:0}.contact-links{display:flex;gap:10px;flex-wrap:wrap}
+footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font-size:.8rem}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.site-note{max-width:650px;text-align:right}
+@media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center;padding:60px 0;gap:30px}.portrait-wrap{grid-row:1;width:180px}.lead{margin:auto}.hero-buttons{justify-content:center}.project-grid,.two-col{grid-template-columns:1fr}.entry{grid-template-columns:1fr;gap:5px}}
+@media(max-width:620px){.project-placeholder{height:145px}.container{width:calc(100% - 30px)}.menu-btn{display:block}.nav-links{display:none;position:absolute;top:66px;left:0;right:0;padding:18px;background:var(--surface);border-bottom:1px solid var(--border);flex-direction:column;gap:12px}.nav-links.open{display:flex}.contact-card{align-items:flex-start;flex-direction:column}.site-note{text-align:left}.project-gallery img{height:145px}}
+
+.org-logos{display:flex;align-items:center;gap:10px;margin:0 0 12px;flex-wrap:wrap}
+.org-logos img{width:66px;height:66px;object-fit:contain;border-radius:0;background:transparent;border:0;padding:0;display:block}
+.org-logos img.om-logo{width:58px;height:58px;border-radius:50%;padding:0}
+.org-logos img.wide-logo{width:76px}
+.org-logos img.banner-logo{width:132px;height:62px;object-fit:contain;padding:0}
+.org-logos img.compact-logo{width:90px;height:62px;object-fit:contain;padding:0}
+@media(max-width:620px){.org-logos img{width:58px;height:58px}.org-logos img.om-logo{width:52px;height:52px}}
+
+/* Organisation logos sit alongside their titles and retain original artwork. */
+.entry-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 7px}
+.entry-heading h3{margin:0;flex:1;min-width:0}
+.entry-heading .org-logos{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex:0 0 auto;margin:0}
+.entry-heading .org-logos img{display:block;max-width:116px;max-height:52px;width:auto;height:auto;object-fit:contain;border-radius:0;padding:0;filter:none}
+.entry-heading .org-logos img.om-logo{width:46px;height:46px;max-width:46px;max-height:46px;border-radius:50%;object-fit:contain}
+.entry-heading .org-logos img.wide-logo{max-width:86px;max-height:52px}
+@media(max-width:640px){.entry-heading{align-items:flex-start;gap:10px}.entry-heading .org-logos img{max-width:82px;max-height:42px}.entry-heading .org-logos img.om-logo{width:38px;height:38px;max-width:38px;max-height:38px}}
+
+/* Dav the Mav annotation screenshots: preserve every callout and label. */
+.dav-gallery{grid-template-columns:1fr}
+.dav-gallery img{height:auto;max-height:none;object-fit:contain;background:#252525}
+
+/* Award logos and certificate preview */
+.certificate-link{display:inline-flex;flex-direction:column;align-items:flex-start;gap:7px;margin-top:10px;color:var(--accent);font-weight:600;text-decoration:none}
+.certificate-preview{display:block;width:100%;max-width:420px;height:auto;border:1px solid var(--border);border-radius:6px;background:#fff}
+.certificate-link span{font-size:.9rem}
+
+/* Consistent project gallery sizing */
+.project-gallery.dav-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+.project-gallery.dav-gallery img{height:190px;max-height:190px;object-fit:cover;background:var(--surface2)}
+/* Duke of Edinburgh logo: white artwork on a dark tile for contrast */
+.dofe-logo-wrap{background:#26352f;border-radius:7px;padding:6px 10px}
+.dofe-logo-wrap img{filter:brightness(0) invert(1)}
+/* Certificate previews */
+.certificate-preview{max-width:420px;width:100%;height:auto}
+
+/* Ensure the Duke of Edinburgh mark is visible against the dark logo tile */
+.dofe-logo-wrap{background:#26352f!important;border-radius:7px;padding:8px 12px;display:inline-flex;align-items:center}
+.dofe-logo-wrap img{filter:brightness(0) invert(1)!important;opacity:1!important}
+
+/* Compact link to the detailed Dav the Mav report */
+.report-link{display:inline-block;margin-top:8px;font-size:.88rem;font-weight:700;color:var(--accent);text-decoration:none}
+.report-link:hover{text-decoration:underline}
+.project-idea{height:190px;display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;background:linear-gradient(135deg,#102a43,#087e8b);color:#fff;border-radius:5px}
+.project-idea span{font-size:2rem;font-weight:800;letter-spacing:.04em}
+.project-idea small{font-size:.75rem;letter-spacing:.2em}
+.portrait-wrap{position:relative}
+.smile-note{position:absolute;right:-82px;top:27%;display:flex;align-items:center;gap:4px;color:#d33b36;font-weight:800;font-size:.9rem;white-space:nowrap;transform:rotate(90deg);transform-origin:center}
+.smile-arrow{font-size:1.9rem;line-height:1;transform:rotate(-90deg)}
+@media(max-width:760px){.smile-note{right:-76px;top:20%;font-size:.76rem}.smile-arrow{font-size:1.5rem}}
+
+
+/* Refreshed TeenStreet and Men's Football circular marks */
+.entry-heading .org-logos img.round-org-logo{width:50px;height:50px;max-width:50px;max-height:50px;object-fit:contain;border-radius:50%;padding:0;background:transparent;filter:none}
+@media(max-width:640px){.entry-heading .org-logos img.round-org-logo{width:44px;height:44px;max-width:44px;max-height:44px}}
+
+/* Friendly, gently arched profile-photo annotation with a longer curved arrow */
+.portrait-wrap{position:relative;isolation:isolate}
+.smile-note{position:absolute;right:-112px;bottom:-15px;top:auto;width:178px;display:flex;align-items:center;justify-content:center;color:#e3423c;font-family:'Trebuchet MS','Arial Rounded MT Bold',Arial,sans-serif;font-size:1rem;font-weight:800;letter-spacing:.015em;white-space:nowrap;transform:rotate(-7deg);transform-origin:center;text-shadow:0 1px 0 rgba(0,0,0,.12)}
+.smile-note>span{display:block;transform:rotate(1deg)}
+.smile-arrow{position:absolute;width:170px;height:55px;left:-4px;top:-43px;overflow:visible}
+@media(max-width:760px){.smile-note{right:-100px;bottom:-17px;width:155px;font-size:.82rem}.smile-arrow{width:148px;height:49px;top:-38px}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+
+<nav class="nav-links" id="navLinks">
+<a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#qualifications">Qualifications</a><a href="#volunteering">Volunteering</a><a href="#contact">Contact</a>
+</nav>
+<div class="nav-actions"><button class="icon-btn theme-icon" id="themeToggle" aria-label="Toggle colour theme"><span class="mono-symbol"></span></button><button class="menu-btn" id="menuToggle" aria-label="Open menu">☰</button></div>
+</div></header>
+<main id="home">
+<div class="container hero">
+<div>
+
+<h1>David Skirton.<br><span>Computer Science student.</span></h1>
+<p class="lead">Second-year Computer Science student at Royal Holloway, University of London, interested in cybersecurity, software development and engineering.</p>
+<div class="hero-buttons"><a class="btn primary" href="#projects">View projects ↗</a><a class="btn secondary" href="#contact">Get in touch</a></div>
+</div>
+<div class="portrait-wrap"><img class="portrait" src="profile-website-assets/david-profile.jpg" alt="David Skirton"><div class="smile-note" aria-label="I do smile, I promise!">
+<span>I do smile, I promise!</span></div></div>
+</div>
+
+<section id="about"><div class="container">
+<div class="section-heading"><div class="eyebrow">About</div><h2>A little about me.</h2></div>
+<div class="about-copy">
+<p>I'm David, a second-year Computer Science student at Royal Holloway, University of London. I was born on the South Coast of England, grew up in Eastern Europe, live in Shropshire and am now based in London when I am at university. I'm interested in cybersecurity, software development and engineering.</p>
+<p>In my first year at university, I achieved an average of 82.75% across my modules which included Java object-oriented programming, software development, a Python project, computer fundamentals, internet services, mathematical structures and mathematical methods.</p>
+</div>
+</div></section>
+
+<section id="projects"><div class="container">
+<div class="section-heading"><div class="eyebrow">Projects</div><h2>Some of my projects...</h2></div>
+<div class="project-grid">
+<article class="project"><div class="project-gallery dav-gallery"><img src="profile-website-assets/p5-plant-1.jpeg" alt="Plant moisture monitor displaying soil moisture status"><img src="profile-website-assets/p5-plant-2.jpeg" alt="Plant watering system connected to a potted plant"><img src="profile-website-assets/p5-plant-3.jpeg" alt="Arduino plant watering electronics prototype"><img src="profile-website-assets/p5-plant-4.jpeg" alt="Wiring and control components for the automatic plant watering project"></div><div class="project-meta">Project 01 · ARDUINO · COMPLETED</div><h3>Automatic Plant Moisture Monitor & Watering System</h3><p>Built an Arduino-based system that monitors soil moisture and automatically waters a plant when needed. A moisture sensor provides readings, an LCD displays the current status, and a pump delivers water through tubing.</p></article>
+<article class="project"><div class="project-gallery"><img src="profile-website-assets/p7-davidos-1.jpeg" alt="Modified desktop PC case with integrated screen displaying DavidOS"><img src="profile-website-assets/p7-davidos-2.jpeg" alt="PC case and screen disassembled during modification"><img src="profile-website-assets/p7-davidos-3.jpeg" alt="Internal components and custom screen mounting inside the PC case"></div><div class="project-meta">Project 02 · DAVIDOS · IN PROGRESS</div><h3>DavidOS — Integrated PC Control Centre</h3><p>Building a PC from spare parts and modifying its case so a screen I took apart can fit in to it. The aim is to create a 'DavidOS' control centre and display type of server that connects with my other projects so I can see them all and control them (for example water my plant, turn on the chicken door e.t.c)</p></article>
+<article class="project"><div class="project-gallery">
+<img src="profile-website-assets/p3-dav-the-mav-gameplay-annotations.png" alt="Dav the Mav gameplay screenshot with explanatory annotations describing hearts, timer, coins, player movement, tiles and enemies">
+<img src="profile-website-assets/p3-dav-the-mav-controls-annotations.png" alt="Dav the Mav controls screen with annotations explaining pause, jump, move, menu, quit and game indicators">
+<img src="profile-website-assets/p3-dav-the-mav-title-annotations.png" alt="Dav the Mav title screen with annotations explaining the title artwork and transition into the game">
+</div><div class="project-meta">Project 03 · PYTHON · COMPLETED</div><h3>Dav The Mav — Pygame 2D Scroller</h3><p>A 2D scrolling platform game developed in Python using Pygame and OOP. Includes scrolling levels, animated player and enemies, collision detection, coins, lives, a timer, menus, pause and end-game states, and different levels. Also completed a detailed project report.</p><a class="report-link" href="profile-website-assets/dav-the-mav-project-report.docx" target="_blank" rel="noopener">Open the full project report (DOCX) ↗</a></article>
+<article class="project"><div class="project-gallery"><img src="profile-website-assets/p2-chicken-1.jpeg" alt="Automatic chicken coop door mechanism"><img src="profile-website-assets/p2-chicken-2.jpeg" alt="Chicken door electronics and pulley mechanism"><img src="profile-website-assets/p2-chicken-3.jpeg" alt="Close-up of the chicken coop control system"><img src="profile-website-assets/p2-chicken-4.jpeg" alt="Chicken using the automated coop entrance"></div><div class="project-meta">Project 04 · AUTOMATION · COMPLETED</div><h3>Automatic Chicken Door & Feeder</h3><p>Designed and built an automatic chicken coop door with a feeder so the chickens could be let out and fed without needing me to get up at 6am. Used parts from an old Meccanoid robot, it connects to my Alexa allowing me to automate it to the time I need the chickens to be let out and fed. Feeder works with a string pulley that releases food in a tube (note I do have to reset it each evening so that would be the next step to work out a way to fully automate it)</p></article>
+<article class="project"><div class="project-gallery"><img src="profile-website-assets/p4-simulator-1.jpeg" alt="Raspberry Pi first-person car simulator running on a small display"><img src="profile-website-assets/p4-simulator-3.jpeg" alt="Second view of the Raspberry Pi car simulator"></div><div class="project-meta">Project 05 · PYTHON · COMPLETED</div><h3>First-Person Car Simulator</h3><p>Created a simple first-person driving simulator on a Raspberry Pi, displaying a road and landscape on a small screen and using physical inputs to 'drive' the car. This was my first experience working with asynchronous Python programming (was using the Bubus library)</p></article>
+<article class="project"><div class="project-gallery"><img src="profile-website-assets/p3-cctv.jpeg" alt="Raspberry Pi board and camera module used for a network CCTV project"></div><div class="project-meta">Project 06 · CCTV · COMPLETED</div><h3>Network CCTV Camera</h3><p>Built a simple CCTV camera using a Raspberry Pi and camera module. Works by taking loads of pictures continuously (which means the frame rate isn't too good), then can connect to the Raspberry Pi hotspot from another device and view the camera.</p></article>
+<article class="project"><div class="project-gallery"><img src="profile-website-assets/p6-led-strip.jpeg" alt="Addressable LED strip being tested and programmed using a Raspberry Pi"></div><div class="project-meta">Project 07 · LED PROGRAMMING · IN PROGRESS</div><h3>Programmable LED Strip</h3><p>Currently experimenting with programming an LED strip using a Raspberry Pi.</p></article>
+<article class="project"><div class="project-gallery"><img src="profile-website-assets/p8-ramp-progress-blurred.jpeg" alt="Construction in progress on a patio access ramp; a person in the background is blurred"><img src="profile-website-assets/p8-ramp-finished.jpeg" alt="Completed patio path and sloped access ramp using the existing paving slabs"></div><div class="project-meta">Project 08 · CONSTRUCTION · COMPLETED</div><h3>Patio Accessibility Ramp</h3><p>Took apart existing patio and reused its paving tiles to build a sloped disability access ramp.</p></article>
+<article class="project"><div class="project-gallery"><img src="profile-website-assets/p9-driveway-1.jpeg" alt="Ground preparation and existing paving along the planned vehicle access route"><img src="profile-website-assets/p9-driveway-2.jpeg" alt="Concrete paving slabs being laid to form a vehicle access route"></div><div class="project-meta">Project 09 · CONSTRUCTION · COMPLETED</div><h3>Driveway & Vehicle Access Ramp</h3><p>My second very practical project, clearing and preparing ground, setting out route, and positioning paving slabs to form a drive way sort of thing for cars.</p></article>
+<article class="project"><div class="project-placeholder project-idea" aria-label="ESP32-C6 speedometer project concept"><span>ESP32-C6</span><small>GPS SPEEDOMETER</small></div><div class="project-meta">Project 10 · ESP32-C6 · PLANNED</div><h3>GPS Speedometer</h3><p>Next project idea: building a speedometer using an ESP32-C6 development board, a small 1.4-inch screen and a NEO-6M GPS receiver.</p></article>
+</div></div></section>
+
+<section id="experience"><div class="container">
+<div class="section-heading"><div class="eyebrow">Work & professional development</div><h2>Experience.</h2></div>
+<div class="entries">
+<div class="entry"><div class="entry-date">Oct 2026 – Present</div><div><div class="entry-heading"><h3>Unibuddy Ambassador</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-unibuddy.png" alt="Unibuddy logo"></div></div><p class="entry-org">Unibuddy · Part Time · Remote</p><p>Representing student life and helping prospective students learn more about university.</p></div></div>
+<div class="entry"><div class="entry-date">Aug 2026 – Present</div><div><div class="entry-heading"><h3>Student Ambassador</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-royal-holloway.png" alt="Royal Holloway, University of London logo"></div></div><p class="entry-org">Royal Holloway, University of London · Part-time · Egham</p><p>Hosting talks for prospective students, running campus tours, social media creation, administration roles and more.</p></div></div>
+<div class="entry"><div class="entry-date">Jul 2026 – Nov 2026</div><div><div class="entry-heading"><h3>App Testing and Content Creation – Hodos</h3><div class="org-logos"><img src="profile-website-assets/logo-hodus.png" alt="Hodos app development logo"></div></div><p class="entry-org">Hodos App · Part Time · Remote</p><p>Testing app and providing feedback to developers, and developing content (video editing) in over 10 different languages.</p></div></div>
+<div class="entry"><div class="entry-date">Dec 2025 – Jul 2026</div><div><div class="entry-heading"><h3>Student Tutor – Programming & Game Development</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-funtech.png" alt="FunTech logo"></div></div><p class="entry-org">FunTech · Part-time · Remote</p><p>Tutored students in programming and game development, including Python object-oriented programming, Pygame, C++ OOP, Unreal Engine, JavaScript and GDevelop.</p></div></div>
+<div class="entry"><div class="entry-date">Jun 2023</div><div><div class="entry-heading"><h3>IT Work Experience Student</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-marches-school.png" alt="The Marches School logo"></div></div><p class="entry-org">The Marches School · Oswestry</p><p>Completed a week of work experience with the school's IT team, gaining an insight into practical IT support and systems.</p></div></div>
+<div class="entry"><div class="entry-date">Oct 2021 – Jul 2022</div><div><div class="entry-heading"><h3>Cyber Discovery Programme</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-cyber-discovery.png" alt="Cyber Discovery logo"></div></div><p class="entry-org">Online Programme</p><p>Participated in a government run Capture The Flag, learning Ethical Hacking, Penetration Testing, Digital Forensics, Network Security, Cryptography, Linux, Python Programming and Vulnerability Assessment.</p></div></div>
+
+</div></div></section>
+
+<section id="qualifications"><div class="container">
+<div class="section-heading"><div class="eyebrow">Education & Achievements</div><h2>My Education and some of my Qualifications :)</h2></div>
+<div class="two-col">
+<div><h3>Education</h3>
+<div class="small-entry"><div class="entry-heading"><h3>Royal Holloway, University of London</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-royal-holloway.png" alt="Royal Holloway, University of London logo"></div></div><p>BSc Computer Science · Sep 2025 – Present</p><p>First-year average: 82.75%. Modules included Java OOP, software development, Python project, computer fundamentals, internet services and computer mathematical methods.</p></div>
+<div class="small-entry"><div class="entry-heading"><h3>The Marches School</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-marches-school.png" alt="The Marches School logo"></div></div><p>Sep 2022 – Jun 2024</p><p>A-levels: Computer Science, Mathematics and Further Mathematics</p><p>AS-level: Physics</p></div>
+<div class="small-entry"><div class="entry-heading"><h3>GCSEs</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-marches-school.png" alt="The Marches School logo"></div></div><p>June 2022</p><p>Five grade 9s (A**) and four grade 8s (A*)</p></div>
+</div>
+<div><h3>Certifications & awards</h3>
+<div class="small-entry"><div class="entry-heading"><h3>Arkwright Engineering Scholarship</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-arkwright.png" alt="Arkwright Engineering Scholarships logo"><img class="banner-logo" src="profile-website-assets/logo-crowdstrike.png" alt="CrowdStrike logo"></div></div><p>Scholarship awarded in 2023, with a mentor from CrowdStrike.</p></div>
+<div class="small-entry"><div class="entry-heading"><h3>SANS Foundations Essentials</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-sans-foundations.png" alt="SANS Foundations logo"></div></div><p>Completed the course and achieved over 80% in the exam · 16 April 2021.</p>
+<a class="certificate-link" href="profile-website-assets/sans-foundations-essentials-certificate.pdf" target="_blank" rel="noopener">
+<img class="certificate-preview" src="profile-website-assets/sans-foundations-essentials-certificate-preview.png" alt="SANS Foundations Essentials certificate of completion">
+<span>View certificate (PDF) ↗</span>
+</a></div>
+<div class="small-entry">
+<div class="entry-heading"><h3>Flare Academy — Syndicate: Inside the Life of a Ransomware Operator</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-flare-academy.png" alt="Flare Academy logo"></div></div>
+<p>Certificate of completion · 29 January 2026</p>
+<a class="certificate-link" href="profile-website-assets/flare-academy-certificate-ransomware.pdf" target="_blank" rel="noopener">
+<img class="certificate-preview" src="profile-website-assets/flare-academy-certificate-preview.png" alt="Flare Academy certificate of completion for Syndicate: Inside the Life of a Ransomware Operator">
+<span>View certificate (PDF) ↗</span>
+</a>
+</div>
+<div class="small-entry">
+<div class="entry-heading"><h3>Duke of Edinburgh’s Award</h3><div class="org-logos dofe-logo-wrap"><img class="banner-logo" src="profile-website-assets/logo-duke-of-edinburgh.png" alt="The Duke of Edinburgh’s Award logo"></div></div>
+<p>Bronze Award.</p>
+</div>
+<div class="small-entry"><div class="entry-heading"><h3>Bebras Challenge</h3><div class="org-logos"><img class="compact-logo" src="profile-website-assets/logo-bebras.png" alt="Bebras Challenge mascot logo"></div></div><p>Gold award · December 2023.</p></div>
+</div>
+</div></div></section>
+
+<section id="volunteering"><div class="container">
+<div class="section-heading"><div class="eyebrow">Community & leadership</div><h2>Volunteering & other experience.</h2></div>
+<div class="entries">
+<div class="entry"><div class="entry-date">February 2023 – Present</div><div><div class="entry-heading"><h3>Church volunteering</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-holy-trinity-church.png" alt="Holy Trinity Church, Oswestry logo"><img class="banner-logo" src="profile-website-assets/logo-ccvw-virginia-water.png" alt="CCVW Virginia Water logo"></div></div><p class="entry-org">Holy Trinity Church, Oswestry · CCVW Virginia Water</p><p>Volunteer at children's holiday clubs and regularly help at the church youth group.</p></div></div>
+<div class="entry"><div class="entry-date">2024 – Present · 1–8 August each year</div><div><div class="entry-heading"><h3>Teenstreet Volunteer</h3><div class="org-logos"><img class="round-org-logo" src="profile-website-assets/logo-teenstreet-cropped.png" alt="TeenStreet logo"><img class="om-logo" src="profile-website-assets/logo-operation-mobilisation.png" alt="Operation Mobilisation logo"></div></div><p class="entry-org">Operation Mobilisation - Youth Camp</p><p>Presenting on stage, running games and coordinating and leading local outreaches (outreaches with over 30 teenagers at a time).</p></div></div>
+<div class="entry"><div class="entry-date">Sep 2025 – Present</div><div><div class="entry-heading"><h3>Men&#39;s Football Committee Member</h3><div class="org-logos"><img class="round-org-logo" src="profile-website-assets/logo-mens-football-cropped.png" alt="Men’s Football logo"></div></div><p class="entry-org">Royal Holloway · Men&#39;s Football</p><p>Committee member and player in the university football team.</p></div></div>
+<div class="entry"><div class="entry-date">Sep 2025 – Present</div><div><div class="entry-heading"><h3>Christians In Sport Volunteer</h3><div class="org-logos"><img src="profile-website-assets/logo-christians-in-sport.png" alt="Christians in Sport logo"></div></div><p class="entry-org">Christians In Sport · Sole Leader</p><p>Working with the Christians In Sports charity to support christians playing in competitive sports whilst at university.</p></div></div>
+<div class="entry"><div class="entry-date">Apr 2025 – Present</div><div><div class="entry-heading"><h3>Co-President &amp; Treasurer</h3><div class="org-logos"><img src="profile-website-assets/logo-christian-union.png" alt="Royal Holloway Christian Union logo"></div></div><p class="entry-org">Royal Holloway · Christian Union</p><p>Co-President of Christian Union, leading a team of 9 others. Treasurer managing budgets for events of over 100 people.</p></div></div>
+<div class="entry"><div class="entry-date">June – July 2025</div><div><div class="entry-heading"><h3>Operation Mobilisation - Love Moldova Outreach</h3><div class="org-logos"><img src="profile-website-assets/logo-moldova.png" alt="Moldova project logo"><img class="om-logo" src="profile-website-assets/logo-operation-mobilisation.png" alt="Operation Mobilisation logo"></div></div><p class="entry-org">Operation Mobilisation</p><p>Spent two and a half months volunteering and helping with aid distribution and poverty alleviation.</p></div></div>
+<div class="entry"><div class="entry-date">Mar – May 2025</div><div><div class="entry-heading"><h3>Race Across Europe</h3><div class="org-logos"><img class="wide-logo" src="profile-website-assets/logo-race-across-europe.png" alt="Race Across Europe logo"><img class="om-logo" src="profile-website-assets/logo-operation-mobilisation.png" alt="Operation Mobilisation logo"></div></div><p class="entry-org">Operation Mobilisation · Europe</p><p>Participated in an interrailing volunteering trip, supporting homeless outreach, community projects, youth programmes and English teaching, alongside visiting a residential home for adults with disabilities.</p></div></div>
+<div class="entry"><div class="entry-date">August – December 2024</div><div><div class="entry-heading"><h3>REACH Bible School Programme</h3><div class="org-logos"><img src="profile-website-assets/logo-reach.png" alt="REACH programme logo"><img class="om-logo" src="profile-website-assets/logo-operation-mobilisation.png" alt="Operation Mobilisation logo"></div></div><p class="entry-org">Operation Mobilisation · South Africa</p><p>Completed the REACH Bible School Programme, participating in weekly community outreach, aid distribution and drug rehabilitation support.</p></div></div>
+</div></div></section>
+
+<section id="interests"><div class="container">
+<div class="section-heading"><div class="eyebrow">Outside the projects</div><h2>Interests & things I follow.</h2></div>
+<div class="two-col">
+<div><h3>Interests</h3><p class="about-copy">Football · Hiking · Music · Video editing</p>
+<div class="small-entry"><div class="entry-heading"><h3>Hacked Podcast</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-hacked.png" alt="Hacked logo"></div></div><p>Regular listener, podcast with conversations and stories about cybersecurity and bugs in tech</p></div>
+<div class="small-entry"><h3>Favourite YouTube channel</h3><p><a href="https://www.youtube.com/@Mrwhosetheboss" target="_blank" rel="noopener">Mrwhosetheboss ↗</a></p></div>
+</div>
+</div></div></section>
+
+<section id="contact"><div class="container"><div class="contact-card"><div class="contact-links">
+<a class="btn secondary" href="mailto:David.skirton06@gmail.com">Email me ↗</a>
+<a class="btn primary" href="https://www.linkedin.com/in/davidskirton?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+</div></div></div></section>
+</main>
+<footer><div class="container footer-inner"><span>© <span id="year"></span> David Skirton.</span><span class="site-note">Note: This website was generated mostly using ChatGPT (GPT-6) as a temporary version while I finish building my own website by myself!</span></div></footer>
+<script>
+const themeToggle=document.getElementById('themeToggle'),menuToggle=document.getElementById('menuToggle'),navLinks=document.getElementById('navLinks');
+themeToggle.addEventListener('click',()=>document.body.classList.toggle('light'));
+menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'✕':'☰';});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body></html>

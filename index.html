@@ -74,7 +74,17 @@ footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font
 
 /* Consistent project gallery sizing */
 .project-gallery.dav-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
-.project-gallery.dav-gallery img{height:190px;max-height:190px;object-fit:cover;background:var(--surface2)}
+.project-gallery.dav-gallery img{height:auto;max-height:none;object-fit:contain;background:var(--surface2)}
+/* Keep the four Project 01 photos compact instead of stretching the card. */
+.project:first-child .project-gallery.dav-gallery{grid-template-columns:repeat(2,minmax(0,1fr));}
+.project:first-child .project-gallery.dav-gallery img{height:155px;max-height:155px;width:100%;object-fit:contain;background:var(--surface2)}
+.project-gallery.gps-gallery{grid-template-columns:1fr 1fr}
+.project-gallery.gps-gallery .gps-concept{grid-column:1/-1;height:auto;max-height:300px;object-fit:contain;background:#101820}
+.project-gallery.gps-gallery img:not(.gps-concept){height:170px;object-fit:contain;background:#fff}
+.game-feature{margin-top:22px;padding-top:20px;border-top:1px solid var(--border)}
+.game-feature img{display:block;width:100%;height:auto;max-height:320px;object-fit:cover;border-radius:6px;margin:10px 0 14px}
+.game-feature h4{font-size:1.05rem;margin:12px 0 4px}.game-title{font-weight:700}.game-title .discontinued{font-size:.78em;font-weight:400;color:var(--muted)}
+.game-feature p{color:var(--muted);font-size:.92rem;line-height:1.7;margin:6px 0}
 /* Duke of Edinburgh logo: white artwork on a dark tile for contrast */
 .dofe-logo-wrap{background:#26352f;border-radius:7px;padding:6px 10px}
 .dofe-logo-wrap img{filter:brightness(0) invert(1)}
@@ -107,13 +117,27 @@ footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font
 .smile-note>span{display:block;transform:rotate(1deg)}
 .smile-arrow{position:absolute;width:170px;height:55px;left:-4px;top:-43px;overflow:visible}
 @media(max-width:760px){.smile-note{right:-100px;bottom:-17px;width:155px;font-size:.82rem}.smile-arrow{width:148px;height:49px;top:-38px}}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.skill-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:20px}
+.skill-card h3{font-size:1.05rem;margin:0 0 12px}
+.skill-list{display:flex;flex-wrap:wrap;gap:8px}
+.skill-list span{display:inline-flex;align-items:center;padding:5px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.86rem;line-height:1.45;background:var(--surface)}
+.skill-note{color:var(--muted);font-size:.88rem;margin:18px 0 0;max-width:800px}
+@media(max-width:640px){.skills-grid{grid-template-columns:1fr}.skill-card{padding:17px}}
+
+
+.project-resources{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px}
+.project-resources a{font-size:.86rem;font-weight:650;color:var(--accent);text-decoration:none}
+.project-resources a:hover{text-decoration:underline}
+
 </style>
 </head>
 <body>
 <header><div class="container nav">
 
 <nav class="nav-links" id="navLinks">
-<a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#qualifications">Qualifications</a><a href="#volunteering">Volunteering</a><a href="#contact">Contact</a>
+<a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#qualifications">Qualifications</a><a href="#volunteering">Volunteering</a><a href="#contact">Contact</a>
 </nav>
 <div class="nav-actions"><button class="icon-btn theme-icon" id="themeToggle" aria-label="Toggle colour theme"><span class="mono-symbol"></span></button><button class="menu-btn" id="menuToggle" aria-label="Open menu">☰</button></div>
 </div></header>
@@ -125,8 +149,7 @@ footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font
 <p class="lead">Second-year Computer Science student at Royal Holloway, University of London, interested in cybersecurity, software development and engineering.</p>
 <div class="hero-buttons"><a class="btn primary" href="#projects">View projects ↗</a><a class="btn secondary" href="#contact">Get in touch</a></div>
 </div>
-<div class="portrait-wrap"><img class="portrait" src="profile-website-assets/david-profile.jpg" alt="David Skirton"><div class="smile-note" aria-label="I do smile, I promise!">
-<span>I do smile, I promise!</span></div></div>
+<div class="portrait-wrap"><img class="portrait" src="profile-website-assets/david-profile.jpg" alt="David Skirton"></div>
 </div>
 
 <section id="about"><div class="container">
@@ -153,8 +176,49 @@ footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font
 <article class="project"><div class="project-gallery"><img src="profile-website-assets/p6-led-strip.jpeg" alt="Addressable LED strip being tested and programmed using a Raspberry Pi"></div><div class="project-meta">Project 07 · LED PROGRAMMING · IN PROGRESS</div><h3>Programmable LED Strip</h3><p>Currently experimenting with programming an LED strip using a Raspberry Pi.</p></article>
 <article class="project"><div class="project-gallery"><img src="profile-website-assets/p8-ramp-progress-blurred.jpeg" alt="Construction in progress on a patio access ramp; a person in the background is blurred"><img src="profile-website-assets/p8-ramp-finished.jpeg" alt="Completed patio path and sloped access ramp using the existing paving slabs"></div><div class="project-meta">Project 08 · CONSTRUCTION · COMPLETED</div><h3>Patio Accessibility Ramp</h3><p>Took apart existing patio and reused its paving tiles to build a sloped disability access ramp.</p></article>
 <article class="project"><div class="project-gallery"><img src="profile-website-assets/p9-driveway-1.jpeg" alt="Ground preparation and existing paving along the planned vehicle access route"><img src="profile-website-assets/p9-driveway-2.jpeg" alt="Concrete paving slabs being laid to form a vehicle access route"></div><div class="project-meta">Project 09 · CONSTRUCTION · COMPLETED</div><h3>Driveway & Vehicle Access Ramp</h3><p>My second very practical project, clearing and preparing ground, setting out route, and positioning paving slabs to form a drive way sort of thing for cars.</p></article>
-<article class="project"><div class="project-placeholder project-idea" aria-label="ESP32-C6 speedometer project concept"><span>ESP32-C6</span><small>GPS SPEEDOMETER</small></div><div class="project-meta">Project 10 · ESP32-C6 · PLANNED</div><h3>GPS Speedometer</h3><p>Next project idea: building a speedometer using an ESP32-C6 development board, a small 1.4-inch screen and a NEO-6M GPS receiver.</p></article>
+<article class="project">
+<div class="project-gallery dav-gallery"><img src="profile-website-assets/cs2800-uml-diagram.png" alt="UML class diagram for the Student Grade Management System coursework"></div>
+<div class="project-meta">Project 10 · JAVA · COMPLETED</div>
+<h3>Student Grade Management System — Coursework</h3>
+<p>Developed the model classes for a student grade management system in Java, following a provided UML design and using test-driven development. Implemented JUnit tests and used Maven with Checkstyle and SpotBugs to support testing and code quality, following the coding standards provided for the coursework.</p>
+<div class="project-resources">
+<a href="profile-website-assets/cs2800-coursework-1-specification.md" target="_blank" rel="noopener">Coursework 1 specification ↗</a>
+<a href="profile-website-assets/cs2800-coding-standards.md" target="_blank" rel="noopener">CS2800 coding standards ↗</a>
+</div>
+</article>
+
+<article class="project">
+<div class="project-gallery gps-gallery">
+<img class="gps-concept" src="profile-website-assets/gps-speedometer-proof-of-concept.png" alt="GPS car speedometer proof of concept">
+</div>
+<div class="project-meta">Project 11 · ESP32-C6 · PROOF OF CONCEPT</div>
+<h3>GPS Car Speedometer</h3>
+<p>I plan to make a GPS speedometer using an ESP32-C6 development board with a 1.47-inch LCD and a GY-NEO6MV2 NEO-6M GPS module. Will display speed of my car in mph using GPS data rather than the cars onboard speed data.</p>
+</article>
 </div></div></section>
+
+
+<section id="skills"><div class="container">
+<div class="section-heading"><div class="eyebrow">Skills</div><h2>Technical skills.</h2></div>
+<div class="skills-grid">
+<div class="skill-card"><h3>Programming & web</h3><div class="skill-list">
+<span>Python</span><span>Java</span><span>C</span><span>C++</span><span>JavaScript</span><span>HTML</span><span>CSS</span>
+</div></div>
+<div class="skill-card"><h3>Software development</h3><div class="skill-list">
+<span>Object-oriented programming</span><span>Pygame</span><span>Git & GitLab</span><span>Maven</span><span>GDevelop</span><span>Unreal Engine</span>
+</div></div>
+<div class="skill-card"><h3>Cybersecurity</h3><div class="skill-list">
+<span>Linux</span><span>Ethical hacking fundamentals</span><span>Penetration testing fundamentals</span><span>Digital forensics</span><span>Network security</span><span>Cryptography</span><span>Vulnerability assessment</span>
+</div></div>
+<div class="skill-card"><h3>Hardware & embedded systems</h3><div class="skill-list">
+<span>Arduino</span><span>Raspberry Pi</span>
+</div></div>
+<div class="skill-card"><h3>Development tools</h3><div class="skill-list">
+<span>Visual Studio Code</span><span>PyCharm</span><span>Eclipse</span>
+</div></div>
+</div>
+<p class="skill-note">Cybersecurity topics reflect learning and practical challenge experience through the Cyber Discovery programme and SANS Foundations Essentials.</p>
+</div></section>
 
 <section id="experience"><div class="container">
 <div class="section-heading"><div class="eyebrow">Work & professional development</div><h2>Experience.</h2></div>
@@ -215,10 +279,12 @@ footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font
 <section id="interests"><div class="container">
 <div class="section-heading"><div class="eyebrow">Outside the projects</div><h2>Interests & things I follow.</h2></div>
 <div class="two-col">
-<div><h3>Interests</h3><p class="about-copy">Football · Hiking · Music · Video editing</p>
+<div>
+<h3>Interests</h3><p class="about-copy">Football · Hiking · Music · Video editing</p>
 <div class="small-entry"><div class="entry-heading"><h3>Hacked Podcast</h3><div class="org-logos"><img class="banner-logo" src="profile-website-assets/logo-hacked.png" alt="Hacked logo"></div></div><p>Regular listener, podcast with conversations and stories about cybersecurity and bugs in tech</p></div>
 <div class="small-entry"><h3>Favourite YouTube channel</h3><p><a href="https://www.youtube.com/@Mrwhosetheboss" target="_blank" rel="noopener">Mrwhosetheboss ↗</a></p></div>
 </div>
+<div class="game-feature"><h4>Favourite game — <span class="game-title"><span class="discontinued">(discontinued)</span> Crimson: Steam Pirates (2011)</span></h4><img src="profile-website-assets/crimson-steam-pirates.png" alt="Crimson: Steam Pirates game artwork showing the title over a sea battle map"><p><strong>Running Crimson: Steam Pirates (2011) on Modern Hardware</strong></p><p>Followed the open-source <code>csp-restore</code> project to get the discontinued <em>Crimson: Steam Pirates</em> (2011) running on a modern Windows system. Set up an Ubuntu environment using VirtualBox, installed the required Linux build dependencies and Python packages, and compiled the MOAI game engine from source. Used the project's Python conversion tool to extract and convert the original iOS IPA, integrate the HD artwork archive and prepare the game files for desktop execution. Configured VirtualBox Guest Additions and troubleshot graphics compatibility, audio and display scaling to achieve a playable installation.</p></div>
 </div></div></section>
 
 <section id="contact"><div class="container"><div class="contact-card"><div class="contact-links">
